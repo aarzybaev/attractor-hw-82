@@ -1,7 +1,6 @@
 import express from 'express';
 import {tracksApi} from "../types";
 import Track from "../models/Track";
-import Artist from "../models/Artist";
 
 const tracksRouter = express.Router();
 tracksRouter.get('/', async (req, res, next) => {
