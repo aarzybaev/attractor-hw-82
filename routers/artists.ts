@@ -8,10 +8,6 @@ artistsRouter.get('/', async (req, res) => {
     return res.send(artists);
 });
 
-artistsRouter.get('/:id', (req, res) => {
-    res.send('A single artist by id will be here');
-});
-
 artistsRouter.post('/', imagesUpload.single('photo'), async (req, res, next) => {
     const name = req.body.name;
     const photo = req.file ? req.file.filename : null;

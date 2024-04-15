@@ -5,17 +5,21 @@ import {albumsApi} from "../types";
 
 const albumsRouter = express.Router();
 
-albumsRouter.get('/', async (req, res) => {
-    const artistReq = req.query.artist;
-    let albums: albumsApi[];
+albumsRouter.get('/', async (req, res, next) => {
+    try {
+        const artistReq = req.query.artist;
+        let albums: albumsApi[];
 
-    if (artistReq) {
-        albums = await Album.where({artist: artistReq});
-    } else {
-        albums = await Album.find();
+        if (artistReq) {
+            albums = await Album.where({artist: artistReq});
+        } else {
+            albums = await Album.find();
+        }
+        return res.send(albums);
+
+    } catch (e) {
+        next(e);
     }
-
-    return res.send(albums);
 });
 
 albumsRouter.get('/:id', async (req, res,next) => {
