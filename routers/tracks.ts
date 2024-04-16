@@ -26,7 +26,7 @@ tracksRouter.post('/', async (req, res, next) => {
 
     if (title === undefined || (/^\s*$/.test(title)) ||
         album === undefined || (/^\s*$/.test(album)) ||
-        duration === undefined) {
+        duration === undefined || (/^\s*$/.test(duration))) {
         return res.status(400).json({"error": "Fields must be present in the request"});
     }
 
